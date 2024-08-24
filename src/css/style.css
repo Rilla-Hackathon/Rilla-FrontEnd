@@ -1,0 +1,162 @@
+/* Container for all logos */
+.cl-oont {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  /* Adjust space between logos */
+  justify-content: center;
+  /* Center logos horizontally */
+  padding: 20px;
+  /* Adjust padding around the container */
+}
+
+/* Container for each logo link */
+.cl-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  /* Remove underline from links */
+}
+
+/* Style for each logo image */
+.co-logo-2 {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+  /* Smooth scaling effect on hover */
+}
+
+/* Different sizes for specific logos */
+.co-logo-2.smaller {
+  max-width: 80px;
+  /* Adjust size for smaller logos */
+}
+
+.co-logo-2.larger {
+  max-width: 150px;
+  /* Adjust size for larger logos */
+}
+
+.co-logo-2.wide {
+  max-width: 200px;
+  /* Adjust size for wide logos */
+}
+
+/* Hover effect for logos */
+.cl-container:hover .co-logo-2 {
+  transform: scale(1.05);
+  /* Slightly enlarge logo on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .co-logo-2 {
+    max-width: 60px;
+    /* Adjust logo size for smaller screens */
+  }
+
+  .co-logo-2.smaller {
+    max-width: 50px;
+  }
+
+  .co-logo-2.larger {
+    max-width: 100px;
+  }
+
+  .co-logo-2.wide {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 479px) {
+  .co-logo-2 {
+    max-width: 40px;
+    /* Further adjust size for very small screens */
+  }
+
+  .co-logo-2.smaller {
+    max-width: 30px;
+  }
+
+  .co-logo-2.larger {
+    max-width: 80px;
+  }
+
+  .co-logo-2.wide {
+    max-width: 120px;
+  }
+}
+
+/* Container for the carousel */
+.carousel-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Hide overflow to ensure smooth transitions */
+}
+
+/* Container for carousel items */
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  /* Smooth transition for sliding effect */
+}
+
+/* Styling for carousel items */
+.sh.carousel.top {
+  flex: 0 0 auto;
+  /* Prevent items from shrinking or growing */
+  width: 100%;
+  /* Ensure each item takes full width */
+  display: flex;
+  justify-content: center;
+  /* Center content horizontally */
+  align-items: center;
+  /* Center content vertically */
+  position: relative;
+  /* Allow absolute positioning of inner elements if needed */
+  box-sizing: border-box;
+  /* Include padding and border in the element’s total width and height */
+}
+
+/* Add any additional styles for the carousel items here */
+.sh.carousel.top img {
+  max-width: 100%;
+  /* Ensure images are responsive */
+  height: auto;
+  /* Maintain aspect ratio */
+  display: block;
+  /* Remove bottom margin/space */
+}
+
+/* Optional: Add arrows or dots for carousel navigation */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-nav .prev,
+.carousel-nav .next {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  color: #fff;
+  /* White text */
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .sh.carousel.top {
+    width: 100%;
+    /* Full width for smaller screens */
+  }
+}
