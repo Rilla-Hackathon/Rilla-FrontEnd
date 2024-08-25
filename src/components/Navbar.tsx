@@ -1,7 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebase";
+import '../css/style.css';
 
 const Navbar: React.FC = () => {
+  const [user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe(); // Cleanup subscription on unmount
+  }, []);
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      // Redirect to dashboard on successful login
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Error during Google sign-in", error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      navigate("/"); // Redirect to home page or any other page after sign-out
+    } catch (error) {
+      console.error("Error during sign-out", error);
+    }
+  };
+
   return (
     <div
       data-animation="default"
@@ -31,9 +65,21 @@ const Navbar: React.FC = () => {
           role="navigation"
           className="navbar_menu is-page-height-tablet w-nav-menu"
         >
-          <Link to="/login" className="navbar_link w-nav-link">
-            Login
-          </Link>
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="navbar_link w-nav-link"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <button
+              onClick={handleGoogleSignIn}
+              className="navbar_link w-nav-link"
+            >
+              Sign In
+            </button>
+          )}
         </nav>
         <div className="navbar_menu-button w-nav-button">
           <div className="menu-icon1">
